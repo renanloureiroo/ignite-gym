@@ -4,12 +4,13 @@
     "strict": true,
     "baseUrl": "./",
     "paths": {
-      "@": ["app/*"],
       "@components/*": ["app/components/*"],
+      "@routes/*": ["app/routes/*"],
       "@shared/*": ["app/shared/*"],
-      "@screens": ["app/screens/*"],
+      "@screens/*": ["app/screens/*"],
       "@utils/*": ["app/shared/utils/*"],
       "@hooks/*": ["app/shared/hooks/*"],
+      "@assets/*": ["app/assets/*"],
       "@services/*": ["app/shared/services/*"]
     }
   }
