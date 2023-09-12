@@ -21,6 +21,7 @@ export const SignUp = () => {
       <VStack flex={1} paddingX={10}>
         <Image
           source={BackgroundImage}
+          defaultSource={BackgroundImage}
           alt="Mulheres fazendo cárdio"
           resizeMode="contain"
           position={"absolute"}

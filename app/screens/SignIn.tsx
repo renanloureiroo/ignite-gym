@@ -8,7 +8,7 @@ import Logo from "@assets/logo.svg";
 import { Button } from "@components/Button";
 
 import { useNavigation } from "@react-navigation/native";
-import { AuthStackNavigationProps } from "@routes/Auth.routes";
+import { AuthStackNavigationProps } from "@routes/auth.routes";
 
 export const SignIn = () => {
   const { navigate } = useNavigation<AuthStackNavigationProps<"SignIn">>();
@@ -22,6 +22,7 @@ export const SignIn = () => {
       <VStack flex={1} paddingX={10}>
         <Image
           source={BackgroundImage}
+          defaultSource={BackgroundImage}
           alt="Mulheres fazendo cárdio"
           resizeMode="contain"
           position={"absolute"}
