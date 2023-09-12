@@ -1,14 +1,4 @@
-import {
-  Box,
-  Center,
-  Heading,
-  Icon,
-  Image,
-  Text,
-  VStack,
-  ScrollView,
-} from "native-base";
-import { ImageBackground } from "react-native";
+import { Center, Heading, Image, Text, VStack, ScrollView } from "native-base";
 
 import BackgroundImage from "@assets/background.png";
 
@@ -17,26 +7,11 @@ import { Input } from "@components/Input";
 import Logo from "@assets/logo.svg";
 import { Button } from "@components/Button";
 
-import {
-  NativeStackScreenProps,
-  NativeStackNavigationProp,
-} from "@react-navigation/native-stack";
-
 import { useNavigation } from "@react-navigation/native";
-import { AuthStackParamList } from "@routes/Auth.routes";
-
-type SignUpScreenNavigationProp = NativeStackNavigationProp<
-  AuthStackParamList,
-  "SignUp"
->;
-
-type SignUpScreenRouteProp = NativeStackScreenProps<
-  AuthStackParamList,
-  "SignUp"
->;
+import { AuthStackNavigationProps } from "@routes/auth.routes";
 
 export const SignUp = () => {
-  const { goBack } = useNavigation<SignUpScreenNavigationProp>();
+  const { goBack } = useNavigation<AuthStackNavigationProps<"SignUp">>();
 
   const handleGoBack = () => {
     goBack();

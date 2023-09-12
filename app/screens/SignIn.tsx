@@ -7,29 +7,14 @@ import { Input } from "@components/Input";
 import Logo from "@assets/logo.svg";
 import { Button } from "@components/Button";
 
-import {
-  NativeStackScreenProps,
-  NativeStackNavigationProp,
-} from "@react-navigation/native-stack";
-
 import { useNavigation } from "@react-navigation/native";
-import { AuthStackParamList } from "@routes/Auth.routes";
-
-type SignInScreenNavigationProp = NativeStackNavigationProp<
-  AuthStackParamList,
-  "SignIn"
->;
-
-type SignInScreenRouteProp = NativeStackScreenProps<
-  AuthStackParamList,
-  "SignIn"
->;
+import { AuthStackNavigationProps } from "@routes/Auth.routes";
 
 export const SignIn = () => {
-  const { push } = useNavigation<SignInScreenNavigationProp>();
+  const { navigate } = useNavigation<AuthStackNavigationProps<"SignIn">>();
 
   const handleNavigateToSignUp = () => {
-    push("SignUp");
+    navigate("SignUp");
   };
 
   return (

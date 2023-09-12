@@ -1,17 +1,13 @@
 import { NativeBaseProvider } from "native-base";
 import { FC, ReactNode } from "react";
-import { NavigationContainer } from "@react-navigation/native";
 
 import { theme } from "@shared/theme";
+import { AppRoutes } from "@routes/app.routes";
 
-interface AppProvidersProps {
-  children: ReactNode;
-}
-
-export const AppProviders: FC<AppProvidersProps> = ({ children }) => {
+export const AppProviders = () => {
   return (
     <NativeBaseProvider theme={theme}>
-      <NavigationContainer>{children}</NavigationContainer>
+      <AppRoutes />
     </NativeBaseProvider>
   );
 };

@@ -1,24 +1,28 @@
+import { NavigationProp, RouteProp } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { SignIn, SignUp } from "@screens/index";
-import { useTheme } from "native-base";
 
 export type AuthStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
 };
 
+export type AuthStackRouteProps<T extends keyof AuthStackParamList> = RouteProp<
+  AuthStackParamList,
+  T
+>;
+
+export type AuthStackNavigationProps<T extends keyof AuthStackParamList> =
+  NavigationProp<AuthStackParamList, T>;
+
 const { Navigator, Screen } = createNativeStackNavigator<AuthStackParamList>();
 
 export const AuthStack = () => {
-  const { colors } = useTheme();
   return (
     <Navigator
       screenOptions={{
         headerShown: false,
-        contentStyle: {
-          backgroundColor: colors.gray[900],
-        },
       }}
       initialRouteName="SignIn"
     >
