@@ -1,9 +1,9 @@
 import { NavigationProp, RouteProp } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { SignIn, SignUp } from "@screens/index";
+import { SignInScreen, SignUpScreen } from "@screens/index";
 
-export type AuthStackParamList = {
+type AuthStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
 };
@@ -26,8 +26,8 @@ export const AuthStack = () => {
       }}
       initialRouteName="SignIn"
     >
-      <Screen name="SignIn" component={SignIn} />
-      <Screen name="SignUp" component={SignUp} />
+      <Screen name="SignIn" component={SignInScreen} />
+      <Screen name="SignUp" component={SignUpScreen} />
     </Navigator>
   );
 };
