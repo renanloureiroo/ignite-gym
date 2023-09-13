@@ -16,8 +16,9 @@ export const useFontsLoaded = (props: IUseFontsLoaded) => {
   });
 
   const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded || fontError) {
-      await hidAsyncSplashScreen();
+    if (fontsLoaded) {
+      const success = await hidAsyncSplashScreen();
+      console.log("HIDE_SPLASH_SCREEN", success);
     }
   }, [fontsLoaded, fontError]);
 

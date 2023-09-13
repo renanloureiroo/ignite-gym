@@ -3,5 +3,5 @@ type Config = {
 };
 
 export const config: Config = {
-  persistenceNavigation: "dev",
+  persistenceNavigation: "never",
 };
