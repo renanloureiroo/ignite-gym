@@ -4,11 +4,15 @@ import * as SplashScreen from "expo-splash-screen";
 
 import { useFontsLoaded } from "@hooks/index";
 
-import { AppProviders } from "@shared/Providers";
-import { Loading } from "@components/Loading";
-import { Box, Center } from "native-base";
+import { AppProviders } from "@shared/providers";
 
-import { AuthStack } from "@routes/Auth.routes";
+import { usePersistenceNavigation } from "@shared/hooks/usePersistenceNavigation";
+
+import { LogBox } from "react-native";
+
+LogBox.ignoreLogs([
+  "In React 18, SSRProvider is not necessary and is a noop. You can remove it from your app.",
+]);
 
 SplashScreen.preventAutoHideAsync();
 
@@ -17,22 +21,22 @@ export default function App() {
     hidAsyncSplashScreen: SplashScreen.hideAsync,
   });
 
-  if (!fontError && !fontsLoaded) {
-    return (
-      <AppProviders>
-        <Center flex={1}>
-          <Loading />
-        </Center>
-      </AppProviders>
-    );
+  const { isReady, initialState, onStateChange } = usePersistenceNavigation({
+    key: "ignite_gym:navigation_state",
+  });
+
+  if (!fontsLoaded || fontError || !isReady) {
+    return null;
   }
 
   return (
-    <AppProviders>
-      <Box onLayout={onLayoutRootView} flex={1} bg={"gray.700"}>
-        <StatusBar style="light" translucent backgroundColor="transparent" />
-        <AuthStack />
-      </Box>
-    </AppProviders>
+    <>
+      <StatusBar style="light" translucent backgroundColor="transparent" />
+      <AppProviders
+        initialState={initialState}
+        onStateChange={onStateChange}
+        onLayoutRootView={onLayoutRootView}
+      />
+    </>
   );
 }

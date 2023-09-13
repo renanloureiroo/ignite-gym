@@ -10,7 +10,7 @@ import { Button } from "@components/Button";
 import { useNavigation } from "@react-navigation/native";
 import { AuthStackNavigationProps } from "@routes/auth.routes";
 
-export const SignUp = () => {
+export const SignUpScreen = () => {
   const { goBack } = useNavigation<AuthStackNavigationProps<"SignUp">>();
 
   const handleGoBack = () => {
