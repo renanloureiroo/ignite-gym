@@ -1,13 +1,22 @@
 import { NativeBaseProvider } from "native-base";
-import { FC, ReactNode } from "react";
 
 import { theme } from "@shared/theme";
-import { AppRoutes } from "@routes/app.routes";
 
-export const AppProviders = () => {
+import { InitialState } from "@react-navigation/native";
+import { FC } from "react";
+
+import { MainRoutes } from "@routes/main.routes";
+
+interface AppRoutesProps {
+  initialState?: InitialState;
+  onStateChange?: (state: any) => void;
+  onLayoutRootView?: () => void;
+}
+
+export const AppProviders: FC<AppRoutesProps> = (props) => {
   return (
     <NativeBaseProvider theme={theme}>
-      <AppRoutes />
+      <MainRoutes {...props} />
     </NativeBaseProvider>
   );
 };
