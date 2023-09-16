@@ -75,5 +75,15 @@ export const theme = extendTheme({
         },
       },
     },
+    Text: {
+      defaultProps: {
+        color: "gray.100",
+      },
+    },
+    Heading: {
+      defaultProps: {
+        color: "gray.100",
+      },
+    },
   },
 });

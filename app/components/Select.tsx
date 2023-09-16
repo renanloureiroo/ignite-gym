@@ -14,7 +14,6 @@ export const Select: FC<SelectProps> = (props) => {
     <Pressable
       android_ripple={{
         color: colors.green[500],
-        foreground: true,
       }}
       style={{
         borderRadius: sizes["1"],
