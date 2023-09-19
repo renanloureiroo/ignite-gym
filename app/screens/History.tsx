@@ -4,7 +4,7 @@ import { Center, Text, VStack } from "native-base";
 export const HistoryScreen = () => {
   return (
     <VStack flex={1}>
-      <ScreenHeader />
+      <ScreenHeader title="Histórico de Exercícios" />
     </VStack>
   );
 };

@@ -60,8 +60,8 @@ export const AppRoutes = () => {
       />
 
       <Screen
-        name="Profile"
-        component={ProfileScreen}
+        name="History"
+        component={HistoryScreen}
         options={{
           tabBarIcon: (props) => (
             <HistoryIcon
@@ -73,8 +73,8 @@ export const AppRoutes = () => {
         }}
       />
       <Screen
-        name="History"
-        component={HistoryScreen}
+        name="Profile"
+        component={ProfileScreen}
         options={{
           tabBarIcon: (props) => (
             <ProfileIcon
