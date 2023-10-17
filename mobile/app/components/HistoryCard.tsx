@@ -1,12 +1,9 @@
+import { HistoryItem } from "app/dtos/HistoryDTO";
 import { HStack, Heading, Text, VStack } from "native-base";
 import { FC } from "react";
 
 interface HistoryCardProps {
-  data: {
-    group: string;
-    name: string;
-    hour: string;
-  };
+  data: HistoryItem;
 }
 
 export const HistoryCard: FC<HistoryCardProps> = (props) => {

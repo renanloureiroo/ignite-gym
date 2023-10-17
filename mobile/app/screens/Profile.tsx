@@ -1,3 +1,6 @@
+import { useState } from "react";
+
+import { Controller, useForm } from "react-hook-form";
 import { Avatar } from "@components/Avatar";
 import { Button } from "@components/Button";
 import { Input } from "@components/Input";
@@ -12,7 +15,6 @@ import {
   Heading,
   useToast,
 } from "native-base";
-import { useState } from "react";
 
 import * as ImagePicker from "expo-image-picker";
 import * as FileSystem from "expo-file-system";
