@@ -47,11 +47,12 @@ export const AuthContextProvider: FC<AuthContextProviderProps> = ({
       });
 
       if (data) {
-        setUser({
+        const userData = {
           ...data.user,
           avatar: `${config.baseURL}/avatar/${data.user.avatar}`,
-        });
-        await storage.save(storageKeys.USER_STORAGE, data.user);
+        };
+        setUser(userData);
+        await storage.save(storageKeys.USER_STORAGE, userData);
         await api.updateAccessTokenAndRefreshToken(
           data.token,
           data.refresh_token
