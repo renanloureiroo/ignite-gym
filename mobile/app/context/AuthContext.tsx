@@ -47,12 +47,11 @@ export const AuthContextProvider: FC<AuthContextProviderProps> = ({
       });
 
       if (data) {
-        const userData = {
+        setUser({
           ...data.user,
           avatar: `${config.baseURL}/avatar/${data.user.avatar}`,
-        };
-        setUser(userData);
-        await storage.save(storageKeys.USER_STORAGE, userData);
+        });
+        await storage.save(storageKeys.USER_STORAGE, data.user);
         await api.updateAccessTokenAndRefreshToken(
           data.token,
           data.refresh_token
@@ -86,7 +85,6 @@ export const AuthContextProvider: FC<AuthContextProviderProps> = ({
       const userData = await storage.get<UserDTO>(storageKeys.USER_STORAGE);
 
       if (userData) {
-        __DEV__ && console.log("HEUDRATED_DATA", userData);
         setUser(userData);
       }
     } catch (error) {
