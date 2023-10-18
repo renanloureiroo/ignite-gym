@@ -23,6 +23,7 @@ import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { useState } from "react";
 import { AppError } from "@shared/utils/AppError";
+import { Keyboard } from "react-native";
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -58,6 +59,7 @@ export const SignInScreen = () => {
   };
 
   const handleSignIn = async ({ email, password }: FormData) => {
+    Keyboard.dismiss();
     setIsLoading(true);
     try {
       await signIn(email, password);

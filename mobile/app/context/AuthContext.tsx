@@ -1,4 +1,5 @@
 import { UserDTO } from "@dtos/";
+import { config } from "@shared/config";
 import { api } from "@shared/services/api/api";
 import { signInWithEmailAndPassword } from "@shared/services/api/signIn";
 import { storage } from "@shared/services/storage";
@@ -21,6 +22,7 @@ type AuthContextType = {
   user: UserDTO;
   signIn: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
+  updateUserProfile: (user: UserDTO) => Promise<void>;
 };
 
 export const AuthContext = createContext<AuthContextType>(
@@ -45,7 +47,10 @@ export const AuthContextProvider: FC<AuthContextProviderProps> = ({
       });
 
       if (data) {
-        setUser(data.user);
+        setUser({
+          ...data.user,
+          avatar: `${config.baseURL}/avatar/${data.user.avatar}`,
+        });
         await storage.save(storageKeys.USER_STORAGE, data.user);
         await api.updateAccessTokenAndRefreshToken(
           data.token,
@@ -66,6 +71,15 @@ export const AuthContextProvider: FC<AuthContextProviderProps> = ({
     } catch (error) {}
   }, []);
 
+  const updateUserProfile = useCallback(async (user: UserDTO) => {
+    try {
+      setUser(user);
+      await storage.save(storageKeys.USER_STORAGE, user);
+    } catch (error) {
+      throw error;
+    }
+  }, []);
+
   const heydrateApplication = async () => {
     try {
       const userData = await storage.get<UserDTO>(storageKeys.USER_STORAGE);
@@ -82,8 +96,18 @@ export const AuthContextProvider: FC<AuthContextProviderProps> = ({
     heydrateApplication();
   }, []);
 
+  useEffect(() => {
+    const subscribe = api.instance.registerInterceptTokenManager(signOut);
+
+    return () => {
+      subscribe();
+    };
+  }, [signOut]);
+
   return (
-    <AuthContext.Provider value={{ user, signIn, signOut, heydrated }}>
+    <AuthContext.Provider
+      value={{ user, signIn, signOut, heydrated, updateUserProfile }}
+    >
       {children}
     </AuthContext.Provider>
   );

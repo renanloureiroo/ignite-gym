@@ -8,3 +8,9 @@ export * from "./getExeciseById";
 export * from "./postExerciseComplete";
 export * from "./createUser";
 export * from "./signIn";
+
+// put
+export * from "./updateProfile";
+
+// patch
+export * from "./updateAvatar";

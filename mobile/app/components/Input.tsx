@@ -13,6 +13,7 @@ export const Input: FC<InputProps> = (props) => {
   return (
     <FormControl isInvalid={isInvalid}>
       <NBInput
+        isDisabled
         isInvalid={isInvalid}
         bg={"gray.700"}
         placeholderTextColor={"gray.300"}
@@ -31,13 +32,18 @@ export const Input: FC<InputProps> = (props) => {
         _disabled={{
           placeholderTextColor: "gray.300",
           color: "gray.300",
-          bg: "gray.700",
           opacity: 1,
         }}
         {...rest}
       />
 
-      <FormControl.ErrorMessage>{errorMessage}</FormControl.ErrorMessage>
+      <FormControl.ErrorMessage
+        _text={{
+          color: "red.400",
+        }}
+      >
+        {errorMessage}
+      </FormControl.ErrorMessage>
     </FormControl>
   );
 };
